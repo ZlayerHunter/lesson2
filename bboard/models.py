@@ -1,6 +1,7 @@
 from tabnanny import verbose
 from unittest.util import _MAX_LENGTH
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -25,3 +26,19 @@ class Rubric(models.Model):
         verbose_name_plural = 'Рубрики'
         verbose_name = 'Рубрика'
         ordering = ['name']
+
+################# Пример связи "Один с одним" #####################       
+class AdvUser(models.Model):
+    is_activated = models.BooleanField(default=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+###################################################################
+
+################# Пример связи "Многие со многими" ################     
+class Object_test(models.Model):
+    name = models.CharField(max_length=20)
+    
+class Subject_test(models.Models):
+    name = models.CharField(max_length=20)
+    objects_test = models.ManyToManyField(Object_test)
+###################################################################
+
