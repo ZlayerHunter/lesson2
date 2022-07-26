@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+{% extends "layout/basic.html" %}
+{% block content %}
+    {% for bb in bbs %}
+        <div>
+            <h1>{{ bb.title }}</h1>
+            <p>{{ bb.price }} руб.</p>
+            <p>{{ bb.content }}</p>
+            <p>{{ bb.published|date:"d.m.Y H:i:s" }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}

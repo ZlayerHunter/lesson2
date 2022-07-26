@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset='UTF-8'>
+        <title>{% block title %}Главная страница{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    </head>
+    <body>
+        <header>
+            <h1>Объявления</h1>
+        </header>
+        <aside>
+            <nav>
+                <ul>
+                    <li><a class="main_links" href="{% url 'index' %}">Главная страница</a></li>
+                    <li><a class="main_links" href="{% url 'add' %}">Добавить объявление</a></li><br>
+                    <font size="6">Категории:</font>
+                    {% for rubric in rubrics %}
+                    <li><a class="main_links" href="{% url 'by_rubric' rubric.pk %}">{{ rubric.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        </aside>
+        <section>
+            {% block content %}
+            {% endblock %}
+        </section>           
+    </body>
+</html>
